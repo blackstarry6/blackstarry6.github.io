@@ -33,6 +33,33 @@
   
   
   <entry>
+    <title>DS的基础使用</title>
+    <link href="/2025/02/21/DS%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/"/>
+    <url>/2025/02/21/DS%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/</url>
+    
+    <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><h2 id="AI原生应用市场"><a href="#AI原生应用市场" class="headerlink" title="AI原生应用市场"></a>AI原生应用市场</h2><ul><li>国产大模型迭代和应用加速（技术突破：强化学习和混合专家架构结合）；</li><li>端侧和边缘计算应用繁荣；</li><li>智能安全和安全智能。</li></ul><h2 id="中小型企业"><a href="#中小型企业" class="headerlink" title="中小型企业"></a>中小型企业</h2><ul><li>价格竞争；</li><li>生态选择；</li><li>场景应用。</li></ul><h2 id="政府及头部企业市场"><a href="#政府及头部企业市场" class="headerlink" title="政府及头部企业市场"></a>政府及头部企业市场</h2><ul><li>智算中心+专业智能体；</li><li>企业级安全与合规保障；</li><li>终端及边缘智能化。</li></ul><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul><li>破除算力霸权；</li><li>商业模型颠覆（NaaS:模型即服务）；</li><li>技术平权。</li></ul><h1 id="基础介绍"><a href="#基础介绍" class="headerlink" title="基础介绍"></a>基础介绍</h1><h2 id="ChatGPT"><a href="#ChatGPT" class="headerlink" title="ChatGPT"></a>ChatGPT</h2><ul><li>“Chat”代表聊天；</li><li>“G”（Generative）代表生成式；</li><li>“P”（Pre-trained）代表预训练；</li><li>“T”<strong>（Transformer）代表Transformer架构</strong>。</li><li>在GPT (Generative Pre-trained Transformer)中，生成式 (generative)意味着这个模型能够生成新的文本序列。</li></ul><h2 id="影响模型的三要素"><a href="#影响模型的三要素" class="headerlink" title="影响模型的三要素"></a>影响模型的三要素</h2><ul><li>算力；</li><li>算法；</li><li>数据。</li></ul><h2 id="提示词框架：BRROKE（融合OKR）"><a href="#提示词框架：BRROKE（融合OKR）" class="headerlink" title="提示词框架：BRROKE（融合OKR）"></a>提示词框架：BRROKE（融合OKR）</h2><ol><li>背景：提供足够的背景信息，使得GPT能够理解问题的上下文；</li><li>角色：设定特定的角色，让GPT能根据该角色来生成响应；</li><li>目标：明确任务目标，让GPT清楚知道需要实现什么；</li><li>要点：定义关键的、可以衡量的结果，以便让GPT知道如何衡量目标的完成情况；</li><li>测试：1次不对，就鼓励AI分步骤，多试几次。通过调整来测试结果，并根据需要进行优化。</li></ol><h2 id="五个技巧"><a href="#五个技巧" class="headerlink" title="五个技巧"></a>五个技巧</h2><ul><li>定目标——抛弃套路，直抒胸臆，但是注意细节；<ul><li>通用公式：我要XX，要给XX用，希望达到XX效果，但是担心XX问题。</li></ul></li><li>说人话；</li><li>补数据——数据类型包括文案、示例、PDF、Excel等，用来给AI补充背景信息；</li><li>勤反问——发挥人的主动性；</li><li>善联动。</li></ul><p><img src="/2025/03/04/win7-vmare-tools/g"></p><p><img src="/2025/03/04/win7-vmare-tools/"></p><p><img src="/2025/03/04/win7-vmare-tools/"></p><p><img src="/2025/03/04/win7-vmare-tools/g"></p><p><img src="/2025/03/04/win7-vmare-tools/"></p><p><img src="/2025/03/04/win7-vmare-tools/"></p><p><img src="/2025/03/04/win7-vmare-tools/"></p><h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><ul><li>秘塔AI搜索；</li><li>纳米AI搜索；</li><li>DeepSeek +阿里通义 快速生成PPT模板；</li><li>DeepSeek +即梦AI 完成AI绘画；</li><li>AI精选工具库</li></ul><p><img src="/2025/03/04/win7-vmare-tools/ng"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术</category>
+      
+      <category>AI</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>AI Use</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>个人博客搭建流程</title>
     <link href="/2025/02/19/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/"/>
     <url>/2025/02/19/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/</url>
