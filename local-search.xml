@@ -4,6 +4,122 @@
   
   
   <entry>
+    <title>扩散模型学习（四）</title>
+    <link href="/2025/03/22/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%EF%BC%884%EF%BC%89/"/>
+    <url>/2025/03/22/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%EF%BC%884%EF%BC%89/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Hugging-Face简介"><a href="#Hugging-Face简介" class="headerlink" title="Hugging Face简介"></a>Hugging Face简介</h1><p>​Hugging Face是机器学习从业者协作和交流的平台。Hugging Face Hub提供了一个中心，使得每个人都可以在这里分享、探索、发现和体验开源的机器学习资源。Hugging Face正在帮助机器学习从业者学习、合作和分享他们的工作，共同构建开放、负责的人工智能的未来。</p><h2 id="核心功能介绍"><a href="#核心功能介绍" class="headerlink" title="核心功能介绍"></a>核心功能介绍</h2><p>​Hugging Face的核心产品是Hugging Face Hub，这是一个基 于Git进行版本管理的存储库，用户可以在这里托管自己的模型、数据集，并为自己的模型加入模型卡片以介绍模型的内容和用法。截至2023年3月底，Hugging Face Hub上已经托管了16.2万个模型、2.6万个数据集以及2.5万个Space应用（仅统计公开的模型、数据集和Space应用）。</p><p>​在Hugging Face Hub上，一个典型的模型卡片通常包含模型的名称以及各种分类标签，模型的开源协议以及预印本平台arXiv.org上的论文引用等，还包括模型的月下载量、趋势图等信 息。</p><p>​当你把模型开源到Hugging Face时，最重要的内容就是模型卡片中关于模型的详细介绍，模型卡片中可以包含模型的用途、制作模型的背景、模型的详细介绍、引用论文、使用说明等。受众多因素的影响，模型卡片也可以提前声明模型中可能出现的一些带有偏见的内容，让使用者有合理的预期。同时，你还可以提供一些模型的训练思路等信息，以方便愿意贡献的成员为你的开源作品添砖加瓦。</p><p>​Hugging Face Hub还支持通过上传自己的数据集，直接在线对模型进行微调的功能。</p><p>​模型卡片的另一个很直观的功能称为“推理API”。如果AI模型能更方便地落地到实际的工程中，这样就能惠及更多人，推理API加速了这一过程。通过推理API，你可以在模型页面上直接“运行”模型的输入并得到输出结果。你还可以通过单击模型页面上的“Deploy”按钮，选择“Inference API”来调出示例代码，你甚至可以利用Python、JavaScript和curl代码，通过推理API来调用模型。</p><p>​模型卡片中除了描述模型的分类、介绍和运行情况以外，还描述了模型训练时使用的数据集。</p><p>​实际调用Hugging Face Hub上的数据集也非常简单，使用load_dataset方法就可以完成调用。</p><p>​除了模型和数据集以外，Hugging Face Hub还提供了一个名为 Spaces的功能，它可以让你在几分钟内就创建和部署一个机器学习应用。Spaces的SDK支持使用Gradio、Streamlit、Docker和静态 HTML。Hugging Face为Space应用提供了免费的两核CPU以及16GB内存的服务器来进行模型推理等工作。</p><p>​为了确保有效利用资源，Hugging Face为Space应用提供的免费服务器会在闲置一定时间（目前是72h）后自动进入休眠状态，并在有用户访问时被再次唤醒。如果想获取更稳定的访问，你可以付费升级硬件，也可以申请社区赞助，还可以向官方申请进行免费的硬件升级。</p><p>​相比推理API，Space应用有更复杂的页面交互，还可以提供示例的输入内容以方便用户和开发者使用。与此同时，Hugging Face为每个Space应用提供了一个可以直接访问的网址，域名通常如下：用户名-Space应用名.hf.space</p><p>​可以通 过 Space 应 用 的 “Duplicate this Space”功能，一键将Space应用“据为己有”。根据Space应用原来的配置，你可能在复制的时候需要加入一些配置值 等。其他用户创建的Space应用可能使用了免费的服务器，因此在高 峰期访问这些应用可能会出现不稳定的情况。在通过“Duplicate this Space”功能复制他人的Space应用之后，你就可以使用自己“独占”的计算服务器资源了，加入自己的API密钥等一系列自定义配置。</p><p>​Hugging Face Hub上的模型和数据集仓库也可以像GitHub一样进行社区协作，比如发布讨论帖子、提交Pull Request等，此外还支持用户“点赞”以表示对模型和数据集的喜爱。</p><h2 id="Hugging-Face开源库"><a href="#Hugging-Face开源库" class="headerlink" title="Hugging Face开源库"></a>Hugging Face开源库</h2><p>● <strong>Transformers。</strong>Transformers提供了一系列的API和工具，使 用者可以轻松地下载和训练SOTA的预训练模型。使用预训练模型可 以降低计算成本、减少碳排放，从而节省从零开始训练模型所需的时间和资源。Transformers支持PyTorch、TensorFlow和JAX，并支持 框架之间的互操作。模型还可以导出成ONNX和TorchScript等格式，以方便在生产环境中部署。 </p><p>● <strong>Datasets。</strong>使用Datasets，你只需要添加一行代码，即可轻松 加载各种数据集，Datasets可以帮助你轻松地访问和共享音频、计算机视觉和自然语言处理等任务的数据集。借助Apache Arrow格式的 支持，你可以零拷贝读取和处理大型数据集。Datasets还与Hugging Face Hub做了深度集成，你可以便捷地加载数据集，并与更广泛的机器学习社区成员共享。 </p><p>● <strong>Diffusers。</strong>Diffusers是一个操作扩散模型的工具箱，它可以非 常方便地使用各种扩散模型生成图像、音频，也可以非常方便地使用 各种噪声调度器，以调节模型推理过程中模型生成的速度和质量。此外，Diffusers还支持多种类型的模型。</p><p>● <strong>Accelerate。</strong>你只需要添加4行代码，即可通过Accelerate在任 何类型的设备上运行原本的PyTorch训练脚本。Accelerate仅仅将与multi-GPU、TPU等相关的模板代码抽象出来，其余代码保持不变。 </p><p>● <strong>Optimum。</strong>Optimum是Transformers的扩展，它提供了一组 性能优化工具，可以在特定的目标硬件上以最高效率训练和运行模 型。 </p><p>● <strong>timm。</strong>timm(PyTorch Image Models)是一个深度学习库，其 中包含图像模型、优化器、调度器以及训练&#x2F;验证脚本等内容。</p><p>​除了上面列举的开源库之外，其他常用的开源库有Tokenizers、Evaluate等。Tokenizers是适用于研究和生产环境的高性能分词器， 使用Rust语言实现，在20s以内就能使用CPU完成对1GB文本数据的分词。Evaluate则使用数十种流行的指标对数据集和模型进行评估。你可以在Hugging Face的GitHub组织页面上查看所有这些开源库。</p><h2 id="Gradio工具介绍"><a href="#Gradio工具介绍" class="headerlink" title="Gradio工具介绍"></a><strong>Gradio工具介绍</strong></h2><p>​Gradio是一个开源的Python库，由Hugging Face推出，用于构建机器学习和数据科学演示以及Web应用。借助Gradio，你可以快速为机器学习模型或数据科学工作流创建美观的用户界面，让用户能够通过浏览器拖放自己的图片、粘贴文本、录制自己的声音并与你的演示互动。</p><p>​当你需要向用户展示机器学习模型的时候，创建一个交互式应用是很好的选择，Gradio可以有效地帮助你做到这一点。</p><h3 id="安装Gradio"><a href="#安装Gradio" class="headerlink" title="安装Gradio"></a>安装Gradio</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">pip <span class="hljs-keyword">install</span> gradio<br></code></pre></td></tr></table></figure><h3 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> gradio <span class="hljs-keyword">as</span> gr<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">greet</span>(<span class="hljs-params">name</span>):<br><span class="hljs-keyword">return</span> <span class="hljs-string">&quot;hello &quot;</span>+name+<span class="hljs-string">&quot;!&quot;</span><br><br>demo=gr.Interface(fn=greet,inputs=<span class="hljs-string">&quot;text&quot;</span>,outputs=<span class="hljs-string">&quot;text&quot;</span>)<br>demo.launch()<br></code></pre></td></tr></table></figure><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">gradio</span> app.py<br></code></pre></td></tr></table></figure><p>​gr.Interface接口可以为任何Python函数提供用户界面，初始化这个接口需要如下3个参数。</p><p>● fn：目标函数的名称（我们将要为该目标函数创建用户界面）。</p><p>● inputs：用于输入的组件（如”text” “image”或”audio”）。 </p><p>● outputs：用于输出的组件（如”text” “image”或”label”）。</p><p>​你可以将使用Gradio构建的应用直接部署到Hugging Face Spaces上，只需要在创建Space应用的时候将SDK设置为Gradio即可。</p><p><strong>注意：</strong>使用Gradio需要Python 3.7或更高的Python版本，更多详细信息可通过访问Gradio官方网站查看。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术</category>
+      
+      <category>AI</category>
+      
+      <category>学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>扩散模型</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>扩散模型学习（三）</title>
+    <link href="/2025/03/22/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%EF%BC%883%EF%BC%89/"/>
+    <url>/2025/03/22/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%EF%BC%883%EF%BC%89/</url>
+    
+    <content type="html"><![CDATA[<h1 id="扩散模型的应用"><a href="#扩散模型的应用" class="headerlink" title="扩散模型的应用"></a>扩散模型的应用</h1><p>​扩散只是一种思想，扩散模型也并非固定的深度网络结构。除此之外，如果将扩散的思想融入其他领域，扩散模型同样可以发挥重要作用。</p><p>​在实际应用中，扩散模型最常见、最成熟的应用就是完成图像生成任务，不过扩散模型在其他领域的应用仍不容忽视，可能在不远的将来，它们就会像在图像生成领域一样蓬勃发展，一鸣惊人。</p><p>● 计算机视觉。 </p><p>● 时序数据预测。 </p><p>● 自然语言。 </p><p>● 基于文本的多模态。 </p><p>● AI基础科学。</p><h2 id="计算机视觉"><a href="#计算机视觉" class="headerlink" title="计算机视觉"></a>计算机视觉</h2><p>​计算机视觉包括2D视觉和3D视觉两个方面，这里仅介绍扩散模型在2D图像领域的应用。</p><p>​扩散模型在许多图像处理任务中都可以很好地发挥作用。</p><ul><li><p>图像分割与目标检测。图像分割与目标检测是计算机视觉领域的经典任务，在智能驾驶、质量监测等方面备受关注。而在加入扩散的方法之后，就可以获取更精准的分割和检测结果了，例如Meta AI 的SegDiff分割扩散模型可以生成分割Mask图，检测扩散模型DiffusionDet同样可以端到端地从随机矩形框逐步生成检测框。不过，扩散模型仍然存在生成速度慢的问题，在应用于一些需要实时检测的场景时还需继续优化。</p></li><li><p>图像超分辨率。图像超分辨率是一项能够将低分辨率图像重建 为高分辨率图像，同时保证图像布局连贯的技术。CDM（Cascaded Diffusion Model，级联扩散模型）通过采用串联多个扩散模型的方式，分级式地逐步放大分辨率，实现了图像超分辨率。</p></li><li><p>图像修复、图像翻译和图像编辑。图像修复、图像翻译和图像编辑是对图像的部分或全部区域执行的操作，包括缺失部分修补、风格迁移、内容替换等。Palette是一个集成了图像修复、图像翻译和图像编辑等功能的扩散模型，它可以在一个模型中完成不同的图像级任务。</p></li></ul><h2 id="时序数据预测"><a href="#时序数据预测" class="headerlink" title="时序数据预测"></a>时序数据预测</h2><p>​时序数据预测旨在根据历史观测数据预测未来可能出现的数据，如空气温度预测、股票价格预测、销售与产能预测等。时序数据预测同样可以视为生成任务，即基于历史数据的基本条件来生成未来数据，因此扩散模型也能发挥作用。</p><p>​TimeGrad是首个在多元概率时序数据预测任务中加入扩散思想的自回归模型。为了将扩散过程添加到历史数据中，TimeGrad首先使用RNN（Recurrent Neural Network，循环神经网络）处理历史 数据并保存到隐空间中，然后对历史数据添加噪声以实现扩散过程，由此处理数千维度的多元数据并完成预测任务。</p><p>​</p><h2 id="自然语言"><a href="#自然语言" class="headerlink" title="自然语言"></a>自然语言</h2><p>​自然语言领域也是人工智能的一个重要发展方向，旨在研究人类语言与计算机通信的相关问题，ChatGPT就是一个自然语言生成问答模型。</p><p>​实际上，扩散模型同样可以完成语言类的生成任务。只要将自然语言类的句子分词并转换为词向量之后，就可以通过扩散的方法来学习自然语言的语句生成，进而完成自然语言领域一些更复杂的任务，如语言翻译、问答对话、搜索补全、情感分析、文章续写等。</p><p>​Diffusion-LM是首个将扩散模型应用到自然语言领域的扩散语言模型。该模型旨在解决如何将连续的扩散过程应用到离散的非连续化文本的问题，由此实现语言类的高细粒度可控生成。</p><p>​</p><h2 id="基于文本的多模态"><a href="#基于文本的多模态" class="headerlink" title="基于文本的多模态"></a>基于文本的多模态</h2><p>​多模态信息指的是多种数据类型的信息，包括文本、图像、音&#x2F;视频、3D物体等。多模态信息的交互是人工智能领域的研究热点之一，对于AI理解人类世界、帮助人类处理多种事务具有重要意义。</p><p>​在诸如DALL-E 2和Stable Diffusion等图像生成扩散模型以及ChatGPT等语言模型出现之后，多模态开始逐渐演变为<strong>基于文本和其他模态的交互</strong>，如文本生成图像、文本生成视频、文本生成3D等。</p><h2 id="AI基础科学"><a href="#AI基础科学" class="headerlink" title="AI基础科学"></a>AI基础科学</h2><p>​AI基础科学又称AI for Science，它是人工智能领域具有广阔前景的分支之一，甚至能够发展为造福全人类的技术。与AI基础科学相关 的 研 究 成 果 也 不 止 一 次 荣 登 《 自 然 》 杂 志 。 例 如 ， 2021 年DeepMind研究的AlphaFold 2可以预测人类世界98.5%的蛋白质， 2022年DeepMind用强化学习控制核聚变反应堆内过热的等离子体等。</p><p>​扩散模型对生成类的任务一直表现十分专业，AI基础科学中生成 预测类的研究当然也少不了扩散模型的参与。SMCDiff创建了一种扩 散模型，该扩散模型可以根据给定的模体结构生成多样化的支架蛋白质。CDVAE则提出了一种扩散晶体变分自编码器模 型，旨在生成和优化具有固定周期性原子结构的材料。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术</category>
+      
+      <category>AI</category>
+      
+      <category>学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>扩散模型</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>扩散模型学习（二）</title>
+    <link href="/2025/03/22/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/"/>
+    <url>/2025/03/22/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/</url>
+    
+    <content type="html"><![CDATA[<h1 id="历史发展"><a href="#历史发展" class="headerlink" title="历史发展"></a>历史发展</h1><p>●开始扩散：基础扩散模型的提出与改进。<br>●加速生成：采样器。<br>●刷新纪录：基于显式分类器引导的扩散模型。<br>● 引 爆 网 络 ： 基 于 CLIP （ Contrastive Language-Image Pretraining，对比语言-图像预处理）的多模态图像生成。<br>●再次“出圈”：大模型的“再学习”方法——DreamBooth、LoRA和ControlNet。<br>●开启AI作画时代：众多商业公司提出成熟的图像生成解决方案。</p><h1 id="基础扩散模型的提出与改进"><a href="#基础扩散模型的提出与改进" class="headerlink" title="基础扩散模型的提出与改进"></a>基础扩散模型的提出与改进</h1><p>​在图像生成领域，最早出现的扩散模型是DDPM（于2020年提出）。DDPM首次将“去噪”扩散概率模型应用到图像生成任务中，奠定了扩散模型在图像生成领域应用的基础，包括扩散过程定义、噪声分布假设、马尔可夫链计算、随机微分方程求解和损失函数表征等，后面涌现的众多扩散模型都是在此基础上进行了不同种类的改进。</p><h1 id="采样器"><a href="#采样器" class="headerlink" title="采样器"></a>采样器</h1><p>​虽然扩散模型在图像生成领域取得了一定的成果，但是由于其在图像生成阶段需要迭代多次，因此生成速度非常慢（最初版本的扩散模型的生成速度甚至长达数分钟），这也是扩散模型一直受到诟病的原因。在扩散模型中，图像生成阶段的速度和质量是由采样器控制的，因此如何在保证生成质量的前提下加快采样是一个对扩散模型而言至关重要的问题。</p><p>​论 文 “Score-Based Generative Modeling through Stochastic Differential Equations”证明了DDPM的采样过程是更普遍的随机微分方程，因此只要能够更离散化地求解该随机微分方程，就可以将1000步的采样过程缩减至50步、20步甚至更少的步数，从而极大地提高扩散模型生成图像的速度。针对如何更快地进行采样这一问题，目前已经涌现了许多优秀的求解器，如Euler、SDE、DPM-Solver++和Karras等，这些加速采样方法也是扩散模型风靡全球至关重要的推力。</p><h1 id="基于显式分类器引导的扩散模型"><a href="#基于显式分类器引导的扩散模型" class="headerlink" title="基于显式分类器引导的扩散模型"></a>基于显式分类器引导的扩散模型</h1><p>​2021年5月以前，虽然扩散模型已经被应用到图像生成领域，但它实际上在图像生成领域并没有“大红大紫”，因为早期的扩散模型在 所 生 成 图 像 的 质 量 和 稳 定 性 上 并 不 如 经 典 的 生 成 模 型GAN（Generative Adversarial Network，生成对抗网络），真正让扩散模型开始在研究领域“爆火”的原因是论文“Diffusion Models Beat GANs on Image Synthesis”的发表。OpenAI的这篇论文贡献非常大，尤其是该文介绍了在扩散过程中如何使用显式分类器引导。</p><p>​更重要的是，这篇论文打败了图像生成领域统治多年的GAN，展示了扩散模型的强大潜力，使得扩散模型一举成为图像生成领域最火的模型。</p><h1 id="基于CLIP的多模态图像生成"><a href="#基于CLIP的多模态图像生成" class="headerlink" title="基于CLIP的多模态图像生成"></a>基于CLIP的多模态图像生成</h1><p>​CLIP是连接文本和图像的模型，旨在将同一语义的文字和图片转换到同一个隐空间中，例如文字“一个苹果”和图片“一个苹果”。正是由于这项技术和扩散模型的结合，才引起基于文字引导的文字生 成图像扩散模型在图像生成领域的彻底爆发，例如OpenAI的GLIDE、DALL-E、DALL-E 2，Google的Imagen以及开源的Stable Diffusion等，优秀的文字生成图像扩散模型层出不穷，给我们带来无尽的惊喜。</p><p>​</p><h1 id="大模型的“再学习”方法——DreamBooth、LoRA和ControlNet"><a href="#大模型的“再学习”方法——DreamBooth、LoRA和ControlNet" class="headerlink" title="大模型的“再学习”方法——DreamBooth、LoRA和ControlNet"></a>大模型的“再学习”方法——DreamBooth、LoRA和ControlNet</h1><p>​自从扩散模型走上大模型之路后，重新训练一个图像生成扩散模型变得非常昂贵。面对数据和计算资源高昂的成本，个人研究者想要入场进行扩散模型的相关研究已经变得非常困难。</p><p>​但实际上，像开源的Stable Diffusion这样的扩散模型已经出色地学习到非常多的图像生成知识，因此不需要也没有必要重新训练类似的扩散模型。于是，许多基于现有的扩散模型进行“再学习”的技术自然而然地涌现，这也使得个人在消费级显卡上训练自己的扩散模型成为可能。DreamBooth、LoRA和ControlNet是实现大模型“再学习”的不同方法，它们是针对不同的任务而提出的。</p><p>​DreamBooth可以实现使用现有模型再学习到指定主体图像的功能，只要通过少量训练将主体绑定到唯一的文本标识符后，就可以通过输入文本提示语来控制自己的主体以生成不同的图像。</p><p>​LoRA可以实现使用现有模型再学习到自己指定数据集风格或人物的功能，并且还能够将其融入现有的图像生成中。Hugging Face提供了训练LoRA的UI界面。</p><p>​ControlNet可以再学习到更多模态的信息，并利用分割图、边缘图等功能更精细地控制图像的生成。</p><p>​</p><h1 id="AI作画时代"><a href="#AI作画时代" class="headerlink" title="AI作画时代"></a>AI作画时代</h1><p>​图像生成扩散模型“爆火”之后，缘于技术的成熟加上关注度的提高以及上手简易等，网络上的扩散模型“百花齐放”，越来越多的人开始使用扩散模型来生成图像。</p><p>​众多提供成熟图像生成解决方案的公司应运而生。</p><ol><li>图像生成服务提供商Midjourney实现了用户既可以通过Midjourney的Discord频道主页输入提示语来生成图像，也可以跟全世界的用户一起分享和探讨图像生成的细节。</li><li>通过Stability AI 公司开发的图像生成工具箱DreamStudio，用户既可以使用提示语来编辑图像，也可以将其SDK嵌入自己的应用或者作为Photoshop插件使用。</li><li>Photoshop也有自己的基于扩散模型的图像编辑工具库Adobe Firefly，用户可以基于Photoshop传统的选区等精细控制功能来更高效地生成图像。</li></ol><p>​百度公司推出了文心一格AI创作平台，而阿里巴巴达摩院也提出了自己的通义文生图大模型等。除了头部企业以外，一些创业公司也开始崭露头角，退格网络推出的Tiamat图像生成工具已获多轮投资，由该工具生成的精美概念场景图像登陆上海地铁广告牌。北京毛线球科技有限公司开发的6pen Art图像生成APP将图像生成带到手机端，使用户在手机上就能体验AI作画。</p><p>​众多的服务商致力于以最成熟、最简单的方式让大众能够通过输 入文字或图片的方式生成想要的图像，真正开启了AI作画时代。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术</category>
+      
+      <category>AI</category>
+      
+      <category>学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>扩散模型</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>扩散模型学习（一）</title>
+    <link href="/2025/03/22/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%EF%BC%881%EF%BC%89/"/>
+    <url>/2025/03/22/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%EF%BC%881%EF%BC%89/</url>
+    
+    <content type="html"><![CDATA[<h1 id="求解器"><a href="#求解器" class="headerlink" title="求解器"></a>求解器</h1><p>以下是关于扩散模型中常用求解器Euler、SDE、DPM-Solver++和Karras的详细介绍：</p><hr><h3 id="1-Euler-求解器"><a href="#1-Euler-求解器" class="headerlink" title="1. Euler 求解器"></a>1. <strong>Euler 求解器</strong></h3><p><strong>原理</strong>：<br>Euler 是最基础的常微分方程（ODE）求解器，属于一阶方法。它通过线性近似逐步去噪，每一步仅使用当前时刻的噪声预测值进行更新。其特点是实现简单，但收敛速度较慢，通常需要较多的步数（如50-100步）才能生成高质量图像。</p><p><strong>分类与特点</strong>：  </p><ul><li><strong>Euler</strong>（确定性）：生成结果稳定且收敛，适合需要可重复性的场景。  </li><li><strong>Euler a</strong>（祖先采样器）：每一步添加随机噪声，生成结果不收敛，但能增加多样性，适合创意插画。</li></ul><p><strong>应用场景</strong>：  </p><ul><li>简单快速测试或对生成稳定性要求较高的任务。</li></ul><hr><h3 id="2-SDE-求解器"><a href="#2-SDE-求解器" class="headerlink" title="2. SDE 求解器"></a>2. <strong>SDE 求解器</strong></h3><p><strong>原理</strong>：<br>SDE（Stochastic Differential Equation）基于随机微分方程，通过引入随机性建模扩散过程。与ODE不同，SDE的采样路径具有随机性，可能生成更丰富的细节，但也可能导致结果不稳定。</p><p><strong>典型实现</strong>：  </p><ul><li><strong>DPM++ SDE Karras</strong>：结合了SDE的随机性和Karras噪声调度，能在10-15步内生成高质量图像，但速度较慢。  </li><li><strong>DPM++ 2M SDE Karras</strong>：在SDE基础上引入二阶多步法（2M），平衡速度与质量，适合真实系图像生成。</li></ul><p><strong>优缺点</strong>：  </p><ul><li>优点：细节丰富，适合高逼真度图像。  </li><li>缺点：不收敛，生成结果随步数波动，且计算成本较高。</li></ul><hr><h3 id="3-DPM-Solver-求解器"><a href="#3-DPM-Solver-求解器" class="headerlink" title="3. DPM-Solver++ 求解器"></a>3. <strong>DPM-Solver++ 求解器</strong></h3><p><strong>原理</strong>：<br>由清华大学TSAIL团队提出，专门针对扩散ODE设计的高阶求解器。通过解析ODE的线性部分并优化数值积分，显著减少采样步数（10-25步即可收敛），且无需额外训练。</p><p><strong>分类与改进</strong>：  </p><ul><li>**DPM-Solver++**：支持二阶和三阶方法，适用于离散与连续时间扩散模型。  </li><li><strong>DPM++ 2M Karras</strong>：结合二阶多步法和Karras噪声调度，速度与质量俱佳，推荐用于快速生成。  </li><li><strong>DPM++ 3M</strong>：更高阶方法，需更多步数（如30步以上）以发挥优势。</li></ul><p><strong>优势</strong>：  </p><ul><li>相比传统ODE求解器（如DDIM），速度提升2倍以上，且在低步数下图像质量更优。</li></ul><hr><h3 id="4-Karras-噪声调度"><a href="#4-Karras-噪声调度" class="headerlink" title="4. Karras 噪声调度"></a>4. <strong>Karras 噪声调度</strong></h3><p><strong>原理</strong>：<br>由Karras等人提出的一种噪声计划优化策略，通过调整时间步的间隔分布（接近结束时步长更小），减少低频噪声残留，从而提升低步数下的图像清晰度。</p><p><strong>应用</strong>：  </p><ul><li>常与其他求解器结合，如 <strong>DPM++ 2M Karras</strong> 或 <strong>UniPC Karras</strong>，进一步加速收敛并改善细节。  </li><li>例如，Stable Diffusion的官方Demo通过Karras调度将生成时间缩短一半。</li></ul><hr><h3 id="综合对比与推荐"><a href="#综合对比与推荐" class="headerlink" title="综合对比与推荐"></a>综合对比与推荐</h3><table><thead><tr><th>求解器</th><th>速度</th><th>收敛性</th><th>适用场景</th><th>推荐步数</th></tr></thead><tbody><tr><td>Euler</td><td>中等</td><td>收敛</td><td>稳定生成、简单任务</td><td>30-50步</td></tr><tr><td>Euler a</td><td>快</td><td>不收敛</td><td>创意插画、多样性需求</td><td>20-40步</td></tr><tr><td>DPM++ 2M Karras</td><td>快</td><td>收敛</td><td>快速高质量生成（通用场景）</td><td>20-30步</td></tr><tr><td>DPM++ SDE Karras</td><td>慢</td><td>不收敛</td><td>高逼真度图像（如真实系）</td><td>10-15步</td></tr><tr><td>UniPC</td><td>中等</td><td>收敛</td><td>极低步数生成（5-10步）</td><td>5-10步</td></tr></tbody></table><hr><h3 id="扩展说明"><a href="#扩展说明" class="headerlink" title="扩展说明"></a>扩展说明</h3><ul><li><strong>硬件优化</strong>：结合编译器和硬件加速（如OneFlow团队将Stable Diffusion优化至0.5秒出图），可进一步提升求解器效率。  </li><li><strong>开源实现</strong>：Hugging Face的<code>diffusers</code>库支持上述多数求解器，代码调用仅需数行。</li></ul><p>如需更详细的参数配置或代码示例，可参考相关论文及开源库（如<a href="https://github.com/LuChengTHU/dpm-solver">DPM-Solver代码库</a>）。</p><h1 id="大模型的“再学习”"><a href="#大模型的“再学习”" class="headerlink" title="大模型的“再学习”"></a>大模型的“再学习”</h1><p>​以下是关于大模型“再学习”方法——DreamBooth、LoRA和ControlNet的详细介绍，结合了它们的技术原理、应用场景及特点：</p><hr><h3 id="1-DreamBooth"><a href="#1-DreamBooth" class="headerlink" title="1. DreamBooth"></a>1. <strong>DreamBooth</strong></h3><p><strong>原理</strong><br>DreamBooth是一种通过少量图像（通常3-5张）将特定主题或概念注入预训练扩散模型（如Stable Diffusion）的微调技术。其核心在于将目标对象与一个稀有标识符（如“sks”）绑定，并结合基础类别（如“dog”）组成新的标签（如“a sks dog”）。为了防止过拟合，DreamBooth引入了<strong>类别先验保留损失（class-specific prior preservation loss）</strong>，通过生成同类别的通用图像作为正则化约束，平衡特定对象的生成与模型的泛化能力。</p><p><strong>应用场景</strong>  </p><ul><li><strong>个性化生成</strong>：将特定对象（如宠物、个人肖像）嵌入模型，生成该对象在不同场景下的图像。  </li><li><strong>艺术创作</strong>：绑定特定风格或稀有元素，实现定制化生成。  </li><li><strong>商业应用</strong>：例如电商产品展示，生成同一商品的多角度视图。</li></ul><p><strong>优缺点</strong>  </p><ul><li><strong>优点</strong>：仅需少量数据即可实现高质量个性化生成，保留模型原有能力。  </li><li><strong>缺点</strong>：训练需要较高显存（通常需16GB以上），且容易因数据不足导致语义漂移。</li></ul><hr><h3 id="2-LoRA（Low-Rank-Adaptation）"><a href="#2-LoRA（Low-Rank-Adaptation）" class="headerlink" title="2. LoRA（Low-Rank Adaptation）"></a>2. <strong>LoRA（Low-Rank Adaptation）</strong></h3><p><strong>原理</strong><br>LoRA通过低秩矩阵分解技术，冻结预训练模型的大部分参数，仅对新增的低秩矩阵进行微调。具体来说，它在模型的线性层（如Attention层的Query、Key、Value矩阵）旁添加可训练的秩分解矩阵，通过调整这些低秩参数实现特定任务或风格的适配。这种方法显著减少了可训练参数量（通常仅占原模型的1%-5%），同时支持多任务快速切换。</p><p><strong>应用场景</strong>  </p><ul><li><strong>风格迁移</strong>：快速适配特定艺术风格（如浮世绘、赛博朋克）。  </li><li><strong>角色定制</strong>：生成固定角色的多场景图像（如游戏角色设计）。  </li><li><strong>轻量化部署</strong>：适合资源有限的个人开发者或移动端应用。</li></ul><p><strong>优缺点</strong>  </p><ul><li><strong>优点</strong>：参数高效，训练速度快，模型体积小（通常几十MB）。  </li><li><strong>缺点</strong>：对复杂概念的适配能力有限，需配合高质量数据集。</li></ul><hr><h3 id="3-ControlNet"><a href="#3-ControlNet" class="headerlink" title="3. ControlNet"></a>3. <strong>ControlNet</strong></h3><p><strong>原理</strong><br>ControlNet通过引入多模态控制信号（如边缘检测图、深度图、语义分割图）来精细化控制生成过程。它在预训练模型的UNet结构中加入可训练的“控制模块”，将控制信号与文本提示结合，共同指导图像生成。例如，输入一张边缘草图，ControlNet可生成符合草图结构的图像，同时匹配文本描述。</p><p><strong>应用场景</strong>  </p><ul><li><strong>精细化编辑</strong>：基于线稿生成完整图像，或按指定结构修复图像。  </li><li><strong>多模态生成</strong>：结合文本、图像、3D模型等多源信息生成结果。  </li><li><strong>工业设计</strong>：生成符合工程图纸的渲染图。</li></ul><p><strong>优缺点</strong>  </p><ul><li><strong>优点</strong>：支持高精度控制，生成结果与输入条件高度一致。  </li><li><strong>缺点</strong>：训练复杂度较高，需准备多模态对齐数据。</li></ul><hr><h3 id="对比与总结"><a href="#对比与总结" class="headerlink" title="对比与总结"></a><strong>对比与总结</strong></h3><table><thead><tr><th>方法</th><th>核心特点</th><th>适用场景</th><th>资源需求</th></tr></thead><tbody><tr><td><strong>DreamBooth</strong></td><td>绑定标识符+类别约束，少量数据实现个性化生成</td><td>定制对象&#x2F;风格</td><td>高显存（&gt;16GB）</td></tr><tr><td><strong>LoRA</strong></td><td>低秩参数微调，轻量化适配</td><td>风格迁移&#x2F;轻量化部署</td><td>低（消费级显卡）</td></tr><tr><td><strong>ControlNet</strong></td><td>多模态控制信号引导生成</td><td>精细化编辑&#x2F;工业设计</td><td>中等</td></tr></tbody></table><hr><h3 id="技术意义与未来方向"><a href="#技术意义与未来方向" class="headerlink" title="技术意义与未来方向"></a><strong>技术意义与未来方向</strong></h3><ol><li><strong>降低训练门槛</strong>：这些方法使得个人用户可在消费级硬件上微调大模型，推动了生成式AI的普惠化。  </li><li><strong>多模态融合</strong>：ControlNet展示了跨模态控制的潜力，未来可能在视频生成、3D建模等领域进一步拓展。  </li><li><strong>生态扩展</strong>：Hugging Face等平台已集成LoRA和DreamBooth的训练工具，社区贡献了大量预训练适配模型，加速了技术落地。</li></ol><p>如需具体实现代码或参数配置，可参考Hugging Face的<code>diffusers</code>库或相关开源项目（如<a href="https://github.com/XavierXiao/Dreambooth-Stable-Diffusion">DreamBooth官方实现</a>）。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术</category>
+      
+      <category>AI</category>
+      
+      <category>学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>扩散模型</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>基于鱼书（第一册）的知识整理（2）</title>
     <link href="/2025/03/10/%E5%9F%BA%E4%BA%8E%E9%B1%BC%E4%B9%A6%EF%BC%88%E7%AC%AC%E4%B8%80%E5%86%8C%EF%BC%89%E7%9A%84%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86%EF%BC%882%EF%BC%89/"/>
     <url>/2025/03/10/%E5%9F%BA%E4%BA%8E%E9%B1%BC%E4%B9%A6%EF%BC%88%E7%AC%AC%E4%B8%80%E5%86%8C%EF%BC%89%E7%9A%84%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86%EF%BC%882%EF%BC%89/</url>
@@ -16,6 +132,8 @@
       <category>技术</category>
       
       <category>AI</category>
+      
+      <category>学习</category>
       
     </categories>
     
@@ -43,6 +161,8 @@
       <category>技术</category>
       
       <category>AI</category>
+      
+      <category>学习</category>
       
     </categories>
     
@@ -192,6 +312,8 @@
       
       <category>AI</category>
       
+      <category>学习</category>
+      
     </categories>
     
     
@@ -218,6 +340,8 @@
       <category>技术</category>
       
       <category>AI</category>
+      
+      <category>学习</category>
       
     </categories>
     
@@ -246,6 +370,8 @@
       
       <category>AI</category>
       
+      <category>学习</category>
+      
     </categories>
     
     
@@ -272,6 +398,8 @@
       <category>技术</category>
       
       <category>AI</category>
+      
+      <category>学习</category>
       
     </categories>
     

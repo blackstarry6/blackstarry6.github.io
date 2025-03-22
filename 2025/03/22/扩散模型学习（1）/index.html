@@ -19,22 +19,22 @@
   <meta name="author" content="blackstarry6">
   <meta name="keywords" content="">
   
-    <meta name="description" content="本文是对《白话机器学习的数学》进行学习后的的知识整理">
+    <meta name="description" content="求解器；模型的“再学习”。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基于《白话机器学习的数学》的知识整理（1）">
-<meta property="og:url" content="http://example.com/2024/07/22/%E5%9F%BA%E4%BA%8E%E3%80%8A%E7%99%BD%E8%AF%9D%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E5%AD%A6%E3%80%8B%E7%9A%84%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86%EF%BC%881%EF%BC%89/index.html">
+<meta property="og:title" content="扩散模型学习（一）">
+<meta property="og:url" content="http://example.com/2025/03/22/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%EF%BC%881%EF%BC%89/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="本文是对《白话机器学习的数学》进行学习后的的知识整理">
+<meta property="og:description" content="求解器；模型的“再学习”。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-07-22T14:32:25.000Z">
-<meta property="article:modified_time" content="2025-03-22T13:51:29.847Z">
+<meta property="article:published_time" content="2025-03-22T13:43:18.000Z">
+<meta property="article:modified_time" content="2025-03-22T13:51:58.828Z">
 <meta property="article:author" content="blackstarry6">
-<meta property="article:tag" content="AI-Learning">
+<meta property="article:tag" content="扩散模型">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>基于《白话机器学习的数学》的知识整理（1） - Hexo</title>
+  <title>扩散模型学习（一） - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="基于《白话机器学习的数学》的知识整理（1）"></span>
+            <span id="subtitle" data-typed-text="扩散模型学习（一）"></span>
           
         </div>
 
@@ -211,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-22 22:32" pubdate>
-          2024年7月22日 晚上
+        <time datetime="2025-03-22 21:43" pubdate>
+          2025年3月22日 晚上
         </time>
       </span>
     
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          660 字
+          2k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          6 分钟
+          17 分钟
         
       </span>
     
@@ -271,39 +271,183 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">基于《白话机器学习的数学》的知识整理（1）</h1>
+            <h1 id="seo-header">扩散模型学习（一）</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
-<li>经常听到的是鉴别垃圾邮件、用图像进行人脸识别、电商网站的推荐功能之类的。</li>
-<li>虽然它的应用场景很多，但它不是万能的。了解机器学习适合的应用场景，明确它能做什么、不能做什么也很重要。</li>
+                <h1 id="求解器"><a href="#求解器" class="headerlink" title="求解器"></a>求解器</h1><p>以下是关于扩散模型中常用求解器Euler、SDE、DPM-Solver++和Karras的详细介绍：</p>
+<hr>
+<h3 id="1-Euler-求解器"><a href="#1-Euler-求解器" class="headerlink" title="1. Euler 求解器"></a>1. <strong>Euler 求解器</strong></h3><p><strong>原理</strong>：<br>Euler 是最基础的常微分方程（ODE）求解器，属于一阶方法。它通过线性近似逐步去噪，每一步仅使用当前时刻的噪声预测值进行更新。其特点是实现简单，但收敛速度较慢，通常需要较多的步数（如50-100步）才能生成高质量图像。</p>
+<p><strong>分类与特点</strong>：  </p>
+<ul>
+<li><strong>Euler</strong>（确定性）：生成结果稳定且收敛，适合需要可重复性的场景。  </li>
+<li><strong>Euler a</strong>（祖先采样器）：每一步添加随机噪声，生成结果不收敛，但能增加多样性，适合创意插画。</li>
 </ul>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><ul>
-<li>无论是过去还是现在，计算机都特别擅长处理重复的任务。所以计算机能够比人类更高效地读取大量的数据、学习数据的特征并从中找出数据的模式。这样的任务也被称为<strong>机器学习或者模式识别</strong>。</li>
-<li>受益于 <ol>
-<li>具备了能够收集大量数据的环境</li>
-<li>具备了能够处理大量数据的环境</li>
+<p><strong>应用场景</strong>：  </p>
+<ul>
+<li>简单快速测试或对生成稳定性要求较高的任务。</li>
+</ul>
+<hr>
+<h3 id="2-SDE-求解器"><a href="#2-SDE-求解器" class="headerlink" title="2. SDE 求解器"></a>2. <strong>SDE 求解器</strong></h3><p><strong>原理</strong>：<br>SDE（Stochastic Differential Equation）基于随机微分方程，通过引入随机性建模扩散过程。与ODE不同，SDE的采样路径具有随机性，可能生成更丰富的细节，但也可能导致结果不稳定。</p>
+<p><strong>典型实现</strong>：  </p>
+<ul>
+<li><strong>DPM++ SDE Karras</strong>：结合了SDE的随机性和Karras噪声调度，能在10-15步内生成高质量图像，但速度较慢。  </li>
+<li><strong>DPM++ 2M SDE Karras</strong>：在SDE基础上引入二阶多步法（2M），平衡速度与质量，适合真实系图像生成。</li>
+</ul>
+<p><strong>优缺点</strong>：  </p>
+<ul>
+<li>优点：细节丰富，适合高逼真度图像。  </li>
+<li>缺点：不收敛，生成结果随步数波动，且计算成本较高。</li>
+</ul>
+<hr>
+<h3 id="3-DPM-Solver-求解器"><a href="#3-DPM-Solver-求解器" class="headerlink" title="3. DPM-Solver++ 求解器"></a>3. <strong>DPM-Solver++ 求解器</strong></h3><p><strong>原理</strong>：<br>由清华大学TSAIL团队提出，专门针对扩散ODE设计的高阶求解器。通过解析ODE的线性部分并优化数值积分，显著减少采样步数（10-25步即可收敛），且无需额外训练。</p>
+<p><strong>分类与改进</strong>：  </p>
+<ul>
+<li>**DPM-Solver++**：支持二阶和三阶方法，适用于离散与连续时间扩散模型。  </li>
+<li><strong>DPM++ 2M Karras</strong>：结合二阶多步法和Karras噪声调度，速度与质量俱佳，推荐用于快速生成。  </li>
+<li><strong>DPM++ 3M</strong>：更高阶方法，需更多步数（如30步以上）以发挥优势。</li>
+</ul>
+<p><strong>优势</strong>：  </p>
+<ul>
+<li>相比传统ODE求解器（如DDIM），速度提升2倍以上，且在低步数下图像质量更优。</li>
+</ul>
+<hr>
+<h3 id="4-Karras-噪声调度"><a href="#4-Karras-噪声调度" class="headerlink" title="4. Karras 噪声调度"></a>4. <strong>Karras 噪声调度</strong></h3><p><strong>原理</strong>：<br>由Karras等人提出的一种噪声计划优化策略，通过调整时间步的间隔分布（接近结束时步长更小），减少低频噪声残留，从而提升低步数下的图像清晰度。</p>
+<p><strong>应用</strong>：  </p>
+<ul>
+<li>常与其他求解器结合，如 <strong>DPM++ 2M Karras</strong> 或 <strong>UniPC Karras</strong>，进一步加速收敛并改善细节。  </li>
+<li>例如，Stable Diffusion的官方Demo通过Karras调度将生成时间缩短一半。</li>
+</ul>
+<hr>
+<h3 id="综合对比与推荐"><a href="#综合对比与推荐" class="headerlink" title="综合对比与推荐"></a>综合对比与推荐</h3><table>
+<thead>
+<tr>
+<th>求解器</th>
+<th>速度</th>
+<th>收敛性</th>
+<th>适用场景</th>
+<th>推荐步数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Euler</td>
+<td>中等</td>
+<td>收敛</td>
+<td>稳定生成、简单任务</td>
+<td>30-50步</td>
+</tr>
+<tr>
+<td>Euler a</td>
+<td>快</td>
+<td>不收敛</td>
+<td>创意插画、多样性需求</td>
+<td>20-40步</td>
+</tr>
+<tr>
+<td>DPM++ 2M Karras</td>
+<td>快</td>
+<td>收敛</td>
+<td>快速高质量生成（通用场景）</td>
+<td>20-30步</td>
+</tr>
+<tr>
+<td>DPM++ SDE Karras</td>
+<td>慢</td>
+<td>不收敛</td>
+<td>高逼真度图像（如真实系）</td>
+<td>10-15步</td>
+</tr>
+<tr>
+<td>UniPC</td>
+<td>中等</td>
+<td>收敛</td>
+<td>极低步数生成（5-10步）</td>
+<td>5-10步</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="扩展说明"><a href="#扩展说明" class="headerlink" title="扩展说明"></a>扩展说明</h3><ul>
+<li><strong>硬件优化</strong>：结合编译器和硬件加速（如OneFlow团队将Stable Diffusion优化至0.5秒出图），可进一步提升求解器效率。  </li>
+<li><strong>开源实现</strong>：Hugging Face的<code>diffusers</code>库支持上述多数求解器，代码调用仅需数行。</li>
+</ul>
+<p>如需更详细的参数配置或代码示例，可参考相关论文及开源库（如<a target="_blank" rel="noopener" href="https://github.com/LuChengTHU/dpm-solver">DPM-Solver代码库</a>）。</p>
+<h1 id="大模型的“再学习”"><a href="#大模型的“再学习”" class="headerlink" title="大模型的“再学习”"></a>大模型的“再学习”</h1><p>​	以下是关于大模型“再学习”方法——DreamBooth、LoRA和ControlNet的详细介绍，结合了它们的技术原理、应用场景及特点：</p>
+<hr>
+<h3 id="1-DreamBooth"><a href="#1-DreamBooth" class="headerlink" title="1. DreamBooth"></a>1. <strong>DreamBooth</strong></h3><p><strong>原理</strong><br>DreamBooth是一种通过少量图像（通常3-5张）将特定主题或概念注入预训练扩散模型（如Stable Diffusion）的微调技术。其核心在于将目标对象与一个稀有标识符（如“sks”）绑定，并结合基础类别（如“dog”）组成新的标签（如“a sks dog”）。为了防止过拟合，DreamBooth引入了<strong>类别先验保留损失（class-specific prior preservation loss）</strong>，通过生成同类别的通用图像作为正则化约束，平衡特定对象的生成与模型的泛化能力。</p>
+<p><strong>应用场景</strong>  </p>
+<ul>
+<li><strong>个性化生成</strong>：将特定对象（如宠物、个人肖像）嵌入模型，生成该对象在不同场景下的图像。  </li>
+<li><strong>艺术创作</strong>：绑定特定风格或稀有元素，实现定制化生成。  </li>
+<li><strong>商业应用</strong>：例如电商产品展示，生成同一商品的多角度视图。</li>
+</ul>
+<p><strong>优缺点</strong>  </p>
+<ul>
+<li><strong>优点</strong>：仅需少量数据即可实现高质量个性化生成，保留模型原有能力。  </li>
+<li><strong>缺点</strong>：训练需要较高显存（通常需16GB以上），且容易因数据不足导致语义漂移。</li>
+</ul>
+<hr>
+<h3 id="2-LoRA（Low-Rank-Adaptation）"><a href="#2-LoRA（Low-Rank-Adaptation）" class="headerlink" title="2. LoRA（Low-Rank Adaptation）"></a>2. <strong>LoRA（Low-Rank Adaptation）</strong></h3><p><strong>原理</strong><br>LoRA通过低秩矩阵分解技术，冻结预训练模型的大部分参数，仅对新增的低秩矩阵进行微调。具体来说，它在模型的线性层（如Attention层的Query、Key、Value矩阵）旁添加可训练的秩分解矩阵，通过调整这些低秩参数实现特定任务或风格的适配。这种方法显著减少了可训练参数量（通常仅占原模型的1%-5%），同时支持多任务快速切换。</p>
+<p><strong>应用场景</strong>  </p>
+<ul>
+<li><strong>风格迁移</strong>：快速适配特定艺术风格（如浮世绘、赛博朋克）。  </li>
+<li><strong>角色定制</strong>：生成固定角色的多场景图像（如游戏角色设计）。  </li>
+<li><strong>轻量化部署</strong>：适合资源有限的个人开发者或移动端应用。</li>
+</ul>
+<p><strong>优缺点</strong>  </p>
+<ul>
+<li><strong>优点</strong>：参数高效，训练速度快，模型体积小（通常几十MB）。  </li>
+<li><strong>缺点</strong>：对复杂概念的适配能力有限，需配合高质量数据集。</li>
+</ul>
+<hr>
+<h3 id="3-ControlNet"><a href="#3-ControlNet" class="headerlink" title="3. ControlNet"></a>3. <strong>ControlNet</strong></h3><p><strong>原理</strong><br>ControlNet通过引入多模态控制信号（如边缘检测图、深度图、语义分割图）来精细化控制生成过程。它在预训练模型的UNet结构中加入可训练的“控制模块”，将控制信号与文本提示结合，共同指导图像生成。例如，输入一张边缘草图，ControlNet可生成符合草图结构的图像，同时匹配文本描述。</p>
+<p><strong>应用场景</strong>  </p>
+<ul>
+<li><strong>精细化编辑</strong>：基于线稿生成完整图像，或按指定结构修复图像。  </li>
+<li><strong>多模态生成</strong>：结合文本、图像、3D模型等多源信息生成结果。  </li>
+<li><strong>工业设计</strong>：生成符合工程图纸的渲染图。</li>
+</ul>
+<p><strong>优缺点</strong>  </p>
+<ul>
+<li><strong>优点</strong>：支持高精度控制，生成结果与输入条件高度一致。  </li>
+<li><strong>缺点</strong>：训练复杂度较高，需准备多模态对齐数据。</li>
+</ul>
+<hr>
+<h3 id="对比与总结"><a href="#对比与总结" class="headerlink" title="对比与总结"></a><strong>对比与总结</strong></h3><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>核心特点</th>
+<th>适用场景</th>
+<th>资源需求</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>DreamBooth</strong></td>
+<td>绑定标识符+类别约束，少量数据实现个性化生成</td>
+<td>定制对象&#x2F;风格</td>
+<td>高显存（&gt;16GB）</td>
+</tr>
+<tr>
+<td><strong>LoRA</strong></td>
+<td>低秩参数微调，轻量化适配</td>
+<td>风格迁移&#x2F;轻量化部署</td>
+<td>低（消费级显卡）</td>
+</tr>
+<tr>
+<td><strong>ControlNet</strong></td>
+<td>多模态控制信号引导生成</td>
+<td>精细化编辑&#x2F;工业设计</td>
+<td>中等</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="技术意义与未来方向"><a href="#技术意义与未来方向" class="headerlink" title="技术意义与未来方向"></a><strong>技术意义与未来方向</strong></h3><ol>
+<li><strong>降低训练门槛</strong>：这些方法使得个人用户可在消费级硬件上微调大模型，推动了生成式AI的普惠化。  </li>
+<li><strong>多模态融合</strong>：ControlNet展示了跨模态控制的潜力，未来可能在视频生成、3D建模等领域进一步拓展。  </li>
+<li><strong>生态扩展</strong>：Hugging Face等平台已集成LoRA和DreamBooth的训练工具，社区贡献了大量预训练适配模型，加速了技术落地。</li>
 </ol>
-</li>
-<li>当我们打算用机器学习做什么事情的时候，首先需要的就是数据。因为机器学习就是从数据中找出特征和模式的技术。</li>
-<li>比起可以学习到大量知识，计算机能够更快地处理数据这一点更令人激动。现在可以使用GPU进行数值计算，Hadoop、Spark之类的分布式处理技术也逐渐成熟，所以才说现在“具备了能够处理大量数据的环境”。</li>
-</ul>
-<h3 id="相关算法"><a href="#相关算法" class="headerlink" title="相关算法"></a>相关算法</h3><ul>
-<li><p>回归-regression</p>
-<p>简单易懂地说，回归就是在处理连续数据如时间序列数据时使用的技术。如股价时间表。</p>
-</li>
-<li><p>分类-classification</p>
-<p>只有两个类别的问题称为二分类，有三个及以上的问题称为多分类，比如数字的识别就属于多分类问题。</p>
-<p>这种技术可以用来自动识别明信片上手写的邮件编码。有一个很有名的数据集叫MNIST，其中收集了大量手写的数字图片，以及图片实际的数字信息。</p>
-</li>
-<li><p>聚类-clustering</p>
-<p>聚类与分类相似，却又有些不同。聚类考虑的问题是：假设在有100名学生的学校进行摸底考试，然后根据考试成绩把100名学生分为几组，根据分组结果，我们能得出某组偏重理科、某组偏重文科这样有意义的结论。</p>
-<p>它与分类的区别在于数据带不带标签。也有人把标签称为正确答案数据。</p>
-</li>
-</ul>
-<p>​	使用有标签的数据进行的学习称为<strong>有监督学习</strong>，与之相反，使用没有标签的数据进行的学习称为<strong>无监督学习</strong>。回归和分类是有监督学习，而聚类是无监督学习。</p>
+<p>如需具体实现代码或参数配置，可参考Hugging Face的<code>diffusers</code>库或相关开源项目（如<a target="_blank" rel="noopener" href="https://github.com/XavierXiao/Dreambooth-Stable-Diffusion">DreamBooth官方实现</a>）。</p>
 
                 
               </div>
@@ -351,7 +495,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/AI-Learning/" class="print-no-link">#AI-Learning</a>
+        <a href="/tags/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/" class="print-no-link">#扩散模型</a>
       
     </div>
   
@@ -363,8 +507,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>基于《白话机器学习的数学》的知识整理（1）</div>
-      <div>http://example.com/2024/07/22/基于《白话机器学习的数学》的知识整理（1）/</div>
+      <div>扩散模型学习（一）</div>
+      <div>http://example.com/2025/03/22/扩散模型学习（1）/</div>
     </div>
     <div class="license-meta">
       
@@ -376,7 +520,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年7月22日</div>
+          <div>2025年3月22日</div>
         </div>
       
       
@@ -408,15 +552,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/07/23/%E5%9F%BA%E4%BA%8E%E3%80%8A%E7%99%BD%E8%AF%9D%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E5%AD%A6%E3%80%8B%E7%9A%84%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86%EF%BC%882%EF%BC%89/" title="基于《白话机器学习的数学》的知识整理（2）">
+                      <a href="/2025/03/22/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/" title="扩散模型学习（二）">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">基于《白话机器学习的数学》的知识整理（2）</span>
+                        <span class="hidden-mobile">扩散模型学习（二）</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2025/03/10/%E5%9F%BA%E4%BA%8E%E9%B1%BC%E4%B9%A6%EF%BC%88%E7%AC%AC%E4%B8%80%E5%86%8C%EF%BC%89%E7%9A%84%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86%EF%BC%882%EF%BC%89/" title="基于鱼书（第一册）的知识整理（2）">
+                        <span class="hidden-mobile">基于鱼书（第一册）的知识整理（2）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>

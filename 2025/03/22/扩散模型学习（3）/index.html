@@ -19,22 +19,22 @@
   <meta name="author" content="blackstarry6">
   <meta name="keywords" content="">
   
-    <meta name="description" content="本文是对《白话机器学习的数学》进行学习后的的知识整理">
+    <meta name="description" content="扩散模型的应用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基于《白话机器学习的数学》的知识整理（1）">
-<meta property="og:url" content="http://example.com/2024/07/22/%E5%9F%BA%E4%BA%8E%E3%80%8A%E7%99%BD%E8%AF%9D%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E5%AD%A6%E3%80%8B%E7%9A%84%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86%EF%BC%881%EF%BC%89/index.html">
+<meta property="og:title" content="扩散模型学习（三）">
+<meta property="og:url" content="http://example.com/2025/03/22/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%EF%BC%883%EF%BC%89/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="本文是对《白话机器学习的数学》进行学习后的的知识整理">
+<meta property="og:description" content="扩散模型的应用">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-07-22T14:32:25.000Z">
-<meta property="article:modified_time" content="2025-03-22T13:51:29.847Z">
+<meta property="article:published_time" content="2025-03-22T13:43:28.000Z">
+<meta property="article:modified_time" content="2025-03-22T13:52:03.927Z">
 <meta property="article:author" content="blackstarry6">
-<meta property="article:tag" content="AI-Learning">
+<meta property="article:tag" content="扩散模型">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>基于《白话机器学习的数学》的知识整理（1） - Hexo</title>
+  <title>扩散模型学习（三） - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="基于《白话机器学习的数学》的知识整理（1）"></span>
+            <span id="subtitle" data-typed-text="扩散模型学习（三）"></span>
           
         </div>
 
@@ -211,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-22 22:32" pubdate>
-          2024年7月22日 晚上
+        <time datetime="2025-03-22 21:43" pubdate>
+          2025年3月22日 晚上
         </time>
       </span>
     
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          660 字
+          1.4k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          6 分钟
+          12 分钟
         
       </span>
     
@@ -271,39 +271,39 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">基于《白话机器学习的数学》的知识整理（1）</h1>
+            <h1 id="seo-header">扩散模型学习（三）</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
-<li>经常听到的是鉴别垃圾邮件、用图像进行人脸识别、电商网站的推荐功能之类的。</li>
-<li>虽然它的应用场景很多，但它不是万能的。了解机器学习适合的应用场景，明确它能做什么、不能做什么也很重要。</li>
-</ul>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><ul>
-<li>无论是过去还是现在，计算机都特别擅长处理重复的任务。所以计算机能够比人类更高效地读取大量的数据、学习数据的特征并从中找出数据的模式。这样的任务也被称为<strong>机器学习或者模式识别</strong>。</li>
-<li>受益于 <ol>
-<li>具备了能够收集大量数据的环境</li>
-<li>具备了能够处理大量数据的环境</li>
-</ol>
+                <h1 id="扩散模型的应用"><a href="#扩散模型的应用" class="headerlink" title="扩散模型的应用"></a>扩散模型的应用</h1><p>​	扩散只是一种思想，扩散模型也并非固定的深度网络结构。除此之外，如果将扩散的思想融入其他领域，扩散模型同样可以发挥重要作用。</p>
+<p>​	在实际应用中，扩散模型最常见、最成熟的应用就是完成图像生成任务，不过扩散模型在其他领域的应用仍不容忽视，可能在不远的将来，它们就会像在图像生成领域一样蓬勃发展，一鸣惊人。</p>
+<p>● 计算机视觉。 </p>
+<p>● 时序数据预测。 </p>
+<p>● 自然语言。 </p>
+<p>● 基于文本的多模态。 </p>
+<p>● AI基础科学。</p>
+<h2 id="计算机视觉"><a href="#计算机视觉" class="headerlink" title="计算机视觉"></a>计算机视觉</h2><p>​	计算机视觉包括2D视觉和3D视觉两个方面，这里仅介绍扩散模型在2D图像领域的应用。</p>
+<p>​	扩散模型在许多图像处理任务中都可以很好地发挥作用。</p>
+<ul>
+<li><p>图像分割与目标检测。图像分割与目标检测是计算机视觉领域的经典任务，在智能驾驶、质量监测等方面备受关注。而在加入扩散的方法之后，就可以获取更精准的分割和检测结果了，例如Meta AI 的SegDiff分割扩散模型可以生成分割Mask图，检测扩散模型DiffusionDet同样可以端到端地从随机矩形框逐步生成检测框。不过，扩散模型仍然存在生成速度慢的问题，在应用于一些需要实时检测的场景时还需继续优化。</p>
 </li>
-<li>当我们打算用机器学习做什么事情的时候，首先需要的就是数据。因为机器学习就是从数据中找出特征和模式的技术。</li>
-<li>比起可以学习到大量知识，计算机能够更快地处理数据这一点更令人激动。现在可以使用GPU进行数值计算，Hadoop、Spark之类的分布式处理技术也逐渐成熟，所以才说现在“具备了能够处理大量数据的环境”。</li>
-</ul>
-<h3 id="相关算法"><a href="#相关算法" class="headerlink" title="相关算法"></a>相关算法</h3><ul>
-<li><p>回归-regression</p>
-<p>简单易懂地说，回归就是在处理连续数据如时间序列数据时使用的技术。如股价时间表。</p>
+<li><p>图像超分辨率。图像超分辨率是一项能够将低分辨率图像重建 为高分辨率图像，同时保证图像布局连贯的技术。CDM（Cascaded Diffusion Model，级联扩散模型）通过采用串联多个扩散模型的方式，分级式地逐步放大分辨率，实现了图像超分辨率。</p>
 </li>
-<li><p>分类-classification</p>
-<p>只有两个类别的问题称为二分类，有三个及以上的问题称为多分类，比如数字的识别就属于多分类问题。</p>
-<p>这种技术可以用来自动识别明信片上手写的邮件编码。有一个很有名的数据集叫MNIST，其中收集了大量手写的数字图片，以及图片实际的数字信息。</p>
-</li>
-<li><p>聚类-clustering</p>
-<p>聚类与分类相似，却又有些不同。聚类考虑的问题是：假设在有100名学生的学校进行摸底考试，然后根据考试成绩把100名学生分为几组，根据分组结果，我们能得出某组偏重理科、某组偏重文科这样有意义的结论。</p>
-<p>它与分类的区别在于数据带不带标签。也有人把标签称为正确答案数据。</p>
+<li><p>图像修复、图像翻译和图像编辑。图像修复、图像翻译和图像编辑是对图像的部分或全部区域执行的操作，包括缺失部分修补、风格迁移、内容替换等。Palette是一个集成了图像修复、图像翻译和图像编辑等功能的扩散模型，它可以在一个模型中完成不同的图像级任务。</p>
 </li>
 </ul>
-<p>​	使用有标签的数据进行的学习称为<strong>有监督学习</strong>，与之相反，使用没有标签的数据进行的学习称为<strong>无监督学习</strong>。回归和分类是有监督学习，而聚类是无监督学习。</p>
+<h2 id="时序数据预测"><a href="#时序数据预测" class="headerlink" title="时序数据预测"></a>时序数据预测</h2><p>​	时序数据预测旨在根据历史观测数据预测未来可能出现的数据，如空气温度预测、股票价格预测、销售与产能预测等。时序数据预测同样可以视为生成任务，即基于历史数据的基本条件来生成未来数据，因此扩散模型也能发挥作用。</p>
+<p>​	TimeGrad是首个在多元概率时序数据预测任务中加入扩散思想的自回归模型。为了将扩散过程添加到历史数据中，TimeGrad首先使用RNN（Recurrent Neural Network，循环神经网络）处理历史 数据并保存到隐空间中，然后对历史数据添加噪声以实现扩散过程，由此处理数千维度的多元数据并完成预测任务。</p>
+<p>​	</p>
+<h2 id="自然语言"><a href="#自然语言" class="headerlink" title="自然语言"></a>自然语言</h2><p>​	自然语言领域也是人工智能的一个重要发展方向，旨在研究人类语言与计算机通信的相关问题，ChatGPT就是一个自然语言生成问答模型。</p>
+<p>​	实际上，扩散模型同样可以完成语言类的生成任务。只要将自然语言类的句子分词并转换为词向量之后，就可以通过扩散的方法来学习自然语言的语句生成，进而完成自然语言领域一些更复杂的任务，如语言翻译、问答对话、搜索补全、情感分析、文章续写等。</p>
+<p>​	Diffusion-LM是首个将扩散模型应用到自然语言领域的扩散语言模型。该模型旨在解决如何将连续的扩散过程应用到离散的非连续化文本的问题，由此实现语言类的高细粒度可控生成。</p>
+<p>​	</p>
+<h2 id="基于文本的多模态"><a href="#基于文本的多模态" class="headerlink" title="基于文本的多模态"></a>基于文本的多模态</h2><p>​	多模态信息指的是多种数据类型的信息，包括文本、图像、音&#x2F;视频、3D物体等。多模态信息的交互是人工智能领域的研究热点之一，对于AI理解人类世界、帮助人类处理多种事务具有重要意义。</p>
+<p>​	在诸如DALL-E 2和Stable Diffusion等图像生成扩散模型以及ChatGPT等语言模型出现之后，多模态开始逐渐演变为<strong>基于文本和其他模态的交互</strong>，如文本生成图像、文本生成视频、文本生成3D等。</p>
+<h2 id="AI基础科学"><a href="#AI基础科学" class="headerlink" title="AI基础科学"></a>AI基础科学</h2><p>​	AI基础科学又称AI for Science，它是人工智能领域具有广阔前景的分支之一，甚至能够发展为造福全人类的技术。与AI基础科学相关 的 研 究 成 果 也 不 止 一 次 荣 登 《 自 然 》 杂 志 。 例 如 ， 2021 年DeepMind研究的AlphaFold 2可以预测人类世界98.5%的蛋白质， 2022年DeepMind用强化学习控制核聚变反应堆内过热的等离子体等。</p>
+<p>​	扩散模型对生成类的任务一直表现十分专业，AI基础科学中生成 预测类的研究当然也少不了扩散模型的参与。SMCDiff创建了一种扩 散模型，该扩散模型可以根据给定的模体结构生成多样化的支架蛋白质。CDVAE则提出了一种扩散晶体变分自编码器模 型，旨在生成和优化具有固定周期性原子结构的材料。</p>
 
                 
               </div>
@@ -351,7 +351,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/AI-Learning/" class="print-no-link">#AI-Learning</a>
+        <a href="/tags/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/" class="print-no-link">#扩散模型</a>
       
     </div>
   
@@ -363,8 +363,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>基于《白话机器学习的数学》的知识整理（1）</div>
-      <div>http://example.com/2024/07/22/基于《白话机器学习的数学》的知识整理（1）/</div>
+      <div>扩散模型学习（三）</div>
+      <div>http://example.com/2025/03/22/扩散模型学习（3）/</div>
     </div>
     <div class="license-meta">
       
@@ -376,7 +376,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年7月22日</div>
+          <div>2025年3月22日</div>
         </div>
       
       
@@ -408,15 +408,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/07/23/%E5%9F%BA%E4%BA%8E%E3%80%8A%E7%99%BD%E8%AF%9D%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E5%AD%A6%E3%80%8B%E7%9A%84%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86%EF%BC%882%EF%BC%89/" title="基于《白话机器学习的数学》的知识整理（2）">
+                      <a href="/2025/03/22/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%EF%BC%884%EF%BC%89/" title="扩散模型学习（四）">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">基于《白话机器学习的数学》的知识整理（2）</span>
+                        <span class="hidden-mobile">扩散模型学习（四）</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2025/03/22/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/" title="扩散模型学习（二）">
+                        <span class="hidden-mobile">扩散模型学习（二）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>

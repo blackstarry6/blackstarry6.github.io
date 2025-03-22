@@ -19,22 +19,22 @@
   <meta name="author" content="blackstarry6">
   <meta name="keywords" content="">
   
-    <meta name="description" content="本文是对《白话机器学习的数学》进行学习后的的知识整理">
+    <meta name="description" content="扩散模型的发展演变">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基于《白话机器学习的数学》的知识整理（1）">
-<meta property="og:url" content="http://example.com/2024/07/22/%E5%9F%BA%E4%BA%8E%E3%80%8A%E7%99%BD%E8%AF%9D%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E5%AD%A6%E3%80%8B%E7%9A%84%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86%EF%BC%881%EF%BC%89/index.html">
+<meta property="og:title" content="扩散模型学习（二）">
+<meta property="og:url" content="http://example.com/2025/03/22/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="本文是对《白话机器学习的数学》进行学习后的的知识整理">
+<meta property="og:description" content="扩散模型的发展演变">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-07-22T14:32:25.000Z">
-<meta property="article:modified_time" content="2025-03-22T13:51:29.847Z">
+<meta property="article:published_time" content="2025-03-22T13:43:24.000Z">
+<meta property="article:modified_time" content="2025-03-22T13:52:01.422Z">
 <meta property="article:author" content="blackstarry6">
-<meta property="article:tag" content="AI-Learning">
+<meta property="article:tag" content="扩散模型">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>基于《白话机器学习的数学》的知识整理（1） - Hexo</title>
+  <title>扩散模型学习（二） - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="基于《白话机器学习的数学》的知识整理（1）"></span>
+            <span id="subtitle" data-typed-text="扩散模型学习（二）"></span>
           
         </div>
 
@@ -211,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-22 22:32" pubdate>
-          2024年7月22日 晚上
+        <time datetime="2025-03-22 21:43" pubdate>
+          2025年3月22日 晚上
         </time>
       </span>
     
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          660 字
+          1.8k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          6 分钟
+          15 分钟
         
       </span>
     
@@ -271,39 +271,34 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">基于《白话机器学习的数学》的知识整理（1）</h1>
+            <h1 id="seo-header">扩散模型学习（二）</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
-<li>经常听到的是鉴别垃圾邮件、用图像进行人脸识别、电商网站的推荐功能之类的。</li>
-<li>虽然它的应用场景很多，但它不是万能的。了解机器学习适合的应用场景，明确它能做什么、不能做什么也很重要。</li>
-</ul>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><ul>
-<li>无论是过去还是现在，计算机都特别擅长处理重复的任务。所以计算机能够比人类更高效地读取大量的数据、学习数据的特征并从中找出数据的模式。这样的任务也被称为<strong>机器学习或者模式识别</strong>。</li>
-<li>受益于 <ol>
-<li>具备了能够收集大量数据的环境</li>
-<li>具备了能够处理大量数据的环境</li>
+                <h1 id="历史发展"><a href="#历史发展" class="headerlink" title="历史发展"></a>历史发展</h1><p>●开始扩散：基础扩散模型的提出与改进。<br>●加速生成：采样器。<br>●刷新纪录：基于显式分类器引导的扩散模型。<br>● 引 爆 网 络 ： 基 于 CLIP （ Contrastive Language-Image Pretraining，对比语言-图像预处理）的多模态图像生成。<br>●再次“出圈”：大模型的“再学习”方法——DreamBooth、LoRA和ControlNet。<br>●开启AI作画时代：众多商业公司提出成熟的图像生成解决方案。</p>
+<h1 id="基础扩散模型的提出与改进"><a href="#基础扩散模型的提出与改进" class="headerlink" title="基础扩散模型的提出与改进"></a>基础扩散模型的提出与改进</h1><p>​	在图像生成领域，最早出现的扩散模型是DDPM（于2020年提出）。DDPM首次将“去噪”扩散概率模型应用到图像生成任务中，奠定了扩散模型在图像生成领域应用的基础，包括扩散过程定义、噪声分布假设、马尔可夫链计算、随机微分方程求解和损失函数表征等，后面涌现的众多扩散模型都是在此基础上进行了不同种类的改进。</p>
+<h1 id="采样器"><a href="#采样器" class="headerlink" title="采样器"></a>采样器</h1><p>​	虽然扩散模型在图像生成领域取得了一定的成果，但是由于其在图像生成阶段需要迭代多次，因此生成速度非常慢（最初版本的扩散模型的生成速度甚至长达数分钟），这也是扩散模型一直受到诟病的原因。在扩散模型中，图像生成阶段的速度和质量是由采样器控制的，因此如何在保证生成质量的前提下加快采样是一个对扩散模型而言至关重要的问题。</p>
+<p>​	论 文 “Score-Based Generative Modeling through Stochastic Differential Equations”证明了DDPM的采样过程是更普遍的随机微分方程，因此只要能够更离散化地求解该随机微分方程，就可以将1000步的采样过程缩减至50步、20步甚至更少的步数，从而极大地提高扩散模型生成图像的速度。针对如何更快地进行采样这一问题，目前已经涌现了许多优秀的求解器，如Euler、SDE、DPM-Solver++和Karras等，这些加速采样方法也是扩散模型风靡全球至关重要的推力。</p>
+<h1 id="基于显式分类器引导的扩散模型"><a href="#基于显式分类器引导的扩散模型" class="headerlink" title="基于显式分类器引导的扩散模型"></a>基于显式分类器引导的扩散模型</h1><p>​	2021年5月以前，虽然扩散模型已经被应用到图像生成领域，但它实际上在图像生成领域并没有“大红大紫”，因为早期的扩散模型在 所 生 成 图 像 的 质 量 和 稳 定 性 上 并 不 如 经 典 的 生 成 模 型GAN（Generative Adversarial Network，生成对抗网络），真正让扩散模型开始在研究领域“爆火”的原因是论文“Diffusion Models Beat GANs on Image Synthesis”的发表。OpenAI的这篇论文贡献非常大，尤其是该文介绍了在扩散过程中如何使用显式分类器引导。</p>
+<p>​	更重要的是，这篇论文打败了图像生成领域统治多年的GAN，展示了扩散模型的强大潜力，使得扩散模型一举成为图像生成领域最火的模型。</p>
+<h1 id="基于CLIP的多模态图像生成"><a href="#基于CLIP的多模态图像生成" class="headerlink" title="基于CLIP的多模态图像生成"></a>基于CLIP的多模态图像生成</h1><p>​	CLIP是连接文本和图像的模型，旨在将同一语义的文字和图片转换到同一个隐空间中，例如文字“一个苹果”和图片“一个苹果”。正是由于这项技术和扩散模型的结合，才引起基于文字引导的文字生 成图像扩散模型在图像生成领域的彻底爆发，例如OpenAI的GLIDE、DALL-E、DALL-E 2，Google的Imagen以及开源的Stable Diffusion等，优秀的文字生成图像扩散模型层出不穷，给我们带来无尽的惊喜。</p>
+<p>​	</p>
+<h1 id="大模型的“再学习”方法——DreamBooth、LoRA和ControlNet"><a href="#大模型的“再学习”方法——DreamBooth、LoRA和ControlNet" class="headerlink" title="大模型的“再学习”方法——DreamBooth、LoRA和ControlNet"></a>大模型的“再学习”方法——DreamBooth、LoRA和ControlNet</h1><p>​	自从扩散模型走上大模型之路后，重新训练一个图像生成扩散模型变得非常昂贵。面对数据和计算资源高昂的成本，个人研究者想要入场进行扩散模型的相关研究已经变得非常困难。</p>
+<p>​	但实际上，像开源的Stable Diffusion这样的扩散模型已经出色地学习到非常多的图像生成知识，因此不需要也没有必要重新训练类似的扩散模型。于是，许多基于现有的扩散模型进行“再学习”的技术自然而然地涌现，这也使得个人在消费级显卡上训练自己的扩散模型成为可能。DreamBooth、LoRA和ControlNet是实现大模型“再学习”的不同方法，它们是针对不同的任务而提出的。</p>
+<p>​	DreamBooth可以实现使用现有模型再学习到指定主体图像的功能，只要通过少量训练将主体绑定到唯一的文本标识符后，就可以通过输入文本提示语来控制自己的主体以生成不同的图像。</p>
+<p>​	LoRA可以实现使用现有模型再学习到自己指定数据集风格或人物的功能，并且还能够将其融入现有的图像生成中。Hugging Face提供了训练LoRA的UI界面。</p>
+<p>​	ControlNet可以再学习到更多模态的信息，并利用分割图、边缘图等功能更精细地控制图像的生成。</p>
+<p>​	</p>
+<h1 id="AI作画时代"><a href="#AI作画时代" class="headerlink" title="AI作画时代"></a>AI作画时代</h1><p>​	图像生成扩散模型“爆火”之后，缘于技术的成熟加上关注度的提高以及上手简易等，网络上的扩散模型“百花齐放”，越来越多的人开始使用扩散模型来生成图像。</p>
+<p>​	众多提供成熟图像生成解决方案的公司应运而生。</p>
+<ol>
+<li>图像生成服务提供商Midjourney实现了用户既可以通过Midjourney的Discord频道主页输入提示语来生成图像，也可以跟全世界的用户一起分享和探讨图像生成的细节。</li>
+<li>通过Stability AI 公司开发的图像生成工具箱DreamStudio，用户既可以使用提示语来编辑图像，也可以将其SDK嵌入自己的应用或者作为Photoshop插件使用。</li>
+<li>Photoshop也有自己的基于扩散模型的图像编辑工具库Adobe Firefly，用户可以基于Photoshop传统的选区等精细控制功能来更高效地生成图像。</li>
 </ol>
-</li>
-<li>当我们打算用机器学习做什么事情的时候，首先需要的就是数据。因为机器学习就是从数据中找出特征和模式的技术。</li>
-<li>比起可以学习到大量知识，计算机能够更快地处理数据这一点更令人激动。现在可以使用GPU进行数值计算，Hadoop、Spark之类的分布式处理技术也逐渐成熟，所以才说现在“具备了能够处理大量数据的环境”。</li>
-</ul>
-<h3 id="相关算法"><a href="#相关算法" class="headerlink" title="相关算法"></a>相关算法</h3><ul>
-<li><p>回归-regression</p>
-<p>简单易懂地说，回归就是在处理连续数据如时间序列数据时使用的技术。如股价时间表。</p>
-</li>
-<li><p>分类-classification</p>
-<p>只有两个类别的问题称为二分类，有三个及以上的问题称为多分类，比如数字的识别就属于多分类问题。</p>
-<p>这种技术可以用来自动识别明信片上手写的邮件编码。有一个很有名的数据集叫MNIST，其中收集了大量手写的数字图片，以及图片实际的数字信息。</p>
-</li>
-<li><p>聚类-clustering</p>
-<p>聚类与分类相似，却又有些不同。聚类考虑的问题是：假设在有100名学生的学校进行摸底考试，然后根据考试成绩把100名学生分为几组，根据分组结果，我们能得出某组偏重理科、某组偏重文科这样有意义的结论。</p>
-<p>它与分类的区别在于数据带不带标签。也有人把标签称为正确答案数据。</p>
-</li>
-</ul>
-<p>​	使用有标签的数据进行的学习称为<strong>有监督学习</strong>，与之相反，使用没有标签的数据进行的学习称为<strong>无监督学习</strong>。回归和分类是有监督学习，而聚类是无监督学习。</p>
+<p>​	百度公司推出了文心一格AI创作平台，而阿里巴巴达摩院也提出了自己的通义文生图大模型等。除了头部企业以外，一些创业公司也开始崭露头角，退格网络推出的Tiamat图像生成工具已获多轮投资，由该工具生成的精美概念场景图像登陆上海地铁广告牌。北京毛线球科技有限公司开发的6pen Art图像生成APP将图像生成带到手机端，使用户在手机上就能体验AI作画。</p>
+<p>​	众多的服务商致力于以最成熟、最简单的方式让大众能够通过输 入文字或图片的方式生成想要的图像，真正开启了AI作画时代。</p>
 
                 
               </div>
@@ -351,7 +346,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/AI-Learning/" class="print-no-link">#AI-Learning</a>
+        <a href="/tags/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/" class="print-no-link">#扩散模型</a>
       
     </div>
   
@@ -363,8 +358,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>基于《白话机器学习的数学》的知识整理（1）</div>
-      <div>http://example.com/2024/07/22/基于《白话机器学习的数学》的知识整理（1）/</div>
+      <div>扩散模型学习（二）</div>
+      <div>http://example.com/2025/03/22/扩散模型学习（2）/</div>
     </div>
     <div class="license-meta">
       
@@ -376,7 +371,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年7月22日</div>
+          <div>2025年3月22日</div>
         </div>
       
       
@@ -408,15 +403,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/07/23/%E5%9F%BA%E4%BA%8E%E3%80%8A%E7%99%BD%E8%AF%9D%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E5%AD%A6%E3%80%8B%E7%9A%84%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86%EF%BC%882%EF%BC%89/" title="基于《白话机器学习的数学》的知识整理（2）">
+                      <a href="/2025/03/22/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%EF%BC%883%EF%BC%89/" title="扩散模型学习（三）">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">基于《白话机器学习的数学》的知识整理（2）</span>
+                        <span class="hidden-mobile">扩散模型学习（三）</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2025/03/22/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%EF%BC%881%EF%BC%89/" title="扩散模型学习（一）">
+                        <span class="hidden-mobile">扩散模型学习（一）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
